@@ -115,7 +115,7 @@ npm run electron:build-win
 
 ```powershell
 # 从镜像下载的 zip 用 -UseMirror；从 GitHub 下载则不加该参数
-.\scripts\install-electron-zip.ps1 -ZipPath "D:\Downloads\electron-v28.3.3-win32-x64.zip" -UseMirror
+.\scripts\install-electron-zip.ps1 -ZipPath "C:\path\to\electron-v28.3.3-win32-x64.zip" -UseMirror
 ```
 
 3. 再打包：`npm run electron:build-win`

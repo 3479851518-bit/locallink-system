@@ -1,7 +1,7 @@
 # 将手动下载的 Electron zip 放入缓存或 node_modules
 # 用法:
-#   .\scripts\install-electron-zip.ps1 -ZipPath "D:\Downloads\electron-v28.3.3-win32-x64.zip"
-#   .\scripts\install-electron-zip.ps1 -ZipPath "D:\Downloads\electron-v28.3.3-win32-x64.zip" -UseMirror
+#   .\scripts\install-electron-zip.ps1 -ZipPath "C:\path\to\electron-v28.3.3-win32-x64.zip"
+#   .\scripts\install-electron-zip.ps1 -ZipPath "C:\path\to\electron-v28.3.3-win32-x64.zip" -UseMirror
 
 param(
     [Parameter(Mandatory = $true)]

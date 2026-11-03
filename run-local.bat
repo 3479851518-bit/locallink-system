@@ -13,7 +13,7 @@ REM ========================================
 REM 1. 启动后端
 REM ========================================
 echo [1/3] 启动后端服务...
-cd /d D:\课设\locallink-system
+cd /d "%~dp0"
 start "后端服务 - 端口8080" /min cmd /k "mvn spring-boot:run"
 timeout /t 5 /nobreak >nul
 
@@ -45,7 +45,7 @@ REM 3. 启动前端（仅在后端确认就绪后）
 REM ========================================
 echo.
 echo [3/3] 启动前端服务（后端已就绪）...
-cd /d D:\课设\locallink-system\locallink-web
+cd /d "%~dp0locallink-web"
 start "前端服务 - 端口3000" /min cmd /k "npm run dev"
 
 echo.

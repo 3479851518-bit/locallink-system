@@ -2,8 +2,10 @@
 
 ##  部署路径
 
-- **后端JAR**: `D:\wwwroot\locallink\locallink-system\target\locallink-system-0.0.1-SNAPSHOT.jar`
-- **前端dist**: `D:\wwwroot\locallink\locallink-web\dist\`
+> 说明：文中 `<部署目录>`、`<项目目录>` 为占位符，请替换为实际路径（Windows 如 `D:\wwwroot\locallink`，Linux 如 `/opt/locallink`）。
+
+- **后端JAR**: `<部署目录>\locallink-system\target\locallink-system-0.0.1-SNAPSHOT.jar`
+- **前端dist**: `<部署目录>\locallink-web\dist\`
 
 ## 🚀 部署步骤
 
@@ -46,7 +48,7 @@ server {
 
     # 前端静态文件
     location / {
-        root D:/wwwroot/locallink/locallink-web/dist;
+        root /var/www/locallink/locallink-web/dist;
         index index.html;
         try_files $uri $uri/ /index.html;
     }
@@ -74,7 +76,7 @@ server {
 #### 2. 启动后端
 
 ```powershell
-cd D:\wwwroot\locallink\locallink-system\target
+cd <部署目录>\locallink-system\target
 java -jar locallink-system-0.0.1-SNAPSHOT.jar
 ```
 
@@ -155,7 +157,7 @@ systemctl start nginx
 
 ```powershell
 # 1. 构建前后端
-cd D:\Develop\JavaSECode\locallink-system\locallink-system
+cd <项目目录>
 mvn clean package -DskipTests
 cd locallink-web
 npm run build

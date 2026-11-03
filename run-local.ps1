@@ -11,7 +11,7 @@ Write-Host ""
 
 # Step 1: Start Backend
 Write-Host "[1/3] Starting backend service..." -ForegroundColor Green
-$backendDir = "D:\Develop\JavaSECode\locallink-system\locallink-system"
+$backendDir = $PSScriptRoot
 Set-Location $backendDir
 $backendJob = Start-Process powershell -ArgumentList "-NoExit", "-Command", "Set-Location '$backendDir'; Write-Host 'Backend starting...' -ForegroundColor Yellow; mvn spring-boot:run" -PassThru
 
@@ -50,7 +50,7 @@ if (-not $backendReady) {
 # Step 3: Start Frontend only after backend is confirmed ready
 Write-Host ""
 Write-Host "[3/3] Starting frontend service (backend is ready)..." -ForegroundColor Green
-$frontendDir = "D:\Develop\JavaSECode\locallink-system\locallink-system\locallink-web"
+$frontendDir = Join-Path $PSScriptRoot "locallink-web"
 Set-Location $frontendDir
 $frontendJob = Start-Process powershell -ArgumentList "-NoExit", "-Command", "Set-Location '$frontendDir'; Write-Host 'Frontend starting...' -ForegroundColor Yellow; npm run dev" -PassThru
 

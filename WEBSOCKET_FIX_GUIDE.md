@@ -1,11 +1,13 @@
 # WebSocket 连接问题诊断与修复
 
+> 说明：文中 `your-domain.com`、`<项目目录>`、`<部署目录>` 为示例占位符，请替换为你的实际域名/路径。
+
 ## 问题现象
 WebSocket 连接成功建立，但立即被关闭，触发重连。
 
 ## 控制台日志
 ```
-正在建立 WebSocket 连接: ws://ustbsystest.sylu.cc/ws/chat/7
+正在建立 WebSocket 连接: ws://your-domain.com/ws/chat/7
 WebSocket 已连接
 WebSocket连接成功
 WebSocket 已关闭          ← 问题：连接立即关闭
@@ -86,7 +88,7 @@ taskkill /F /PID <进程ID>
 Get-Process java | Stop-Process -Force
 
 # 重新启动后端
-cd D:\Develop\JavaSECode\locallink-system\locallink-system
+cd <项目目录>
 java -jar target\locallink-system-0.0.1-SNAPSHOT.jar
 ```
 
@@ -123,8 +125,8 @@ tail -f /var/log/nginx/error.log
 
 1. **Console 标签**：
    ```
-   ✓ 服务器配置已加载: {baseUrl: "http://ustbsystest.sylu.cc", wsUrl: "ws://ustbsystest.sylu.cc", ...}
-   ✓ 正在建立 WebSocket 连接: ws://ustbsystest.sylu.cc/ws/chat/7
+   ✓ 服务器配置已加载: {baseUrl: "http://your-domain.com", wsUrl: "ws://your-domain.com", ...}
+   ✓ 正在建立 WebSocket 连接: ws://your-domain.com/ws/chat/7
    ✓ WebSocket 已连接
    ✓ WebSocket连接成功
    ```
@@ -141,10 +143,10 @@ tail -f /var/log/nginx/error.log
 
 ```bash
 # 1. 将测试文件放到 Nginx 根目录
-cp websocket-test.html D:/wwwroot/locallink/locallink-web/dist/
+cp websocket-test.html /var/www/locallink/locallink-web/dist/
 
 # 2. 访问测试页面
-http://ustbsystest.sylu.cc/websocket-test.html
+http://your-domain.com/websocket-test.html
 
 # 3. 输入用户ID（如 7），点击连接
 ```
@@ -198,7 +200,7 @@ nohup java -jar locallink-system-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
 tail -f app.log
 
 # Windows PowerShell
-cd D:\Develop\JavaSECode\locallink-system\locallink-system
+cd <项目目录>
 
 # 1. 停止后端
 Get-Process java -ErrorAction SilentlyContinue | Stop-Process -Force
@@ -207,7 +209,7 @@ Get-Process java -ErrorAction SilentlyContinue | Stop-Process -Force
 Start-Process powershell -ArgumentList "-NoExit", "-Command", "java -jar target\locallink-system-0.0.1-SNAPSHOT.jar"
 
 # 3. 重新部署前端
-xcopy /E /Y locallink-web\dist\* D:\wwwroot\locallink\locallink-web\dist\
+xcopy /E /Y locallink-web\dist\* <部署目录>\locallink-web\dist\
 
 # 4. 重载 Nginx（需要管理员权限）
 nginx -s reload

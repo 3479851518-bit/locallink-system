@@ -6,8 +6,8 @@ $ErrorActionPreference = "Continue"
 # ========================================
 # Configuration
 # ========================================
-$backendJar = "D:\wwwroot\locallink\locallink-system\target\locallink-system-0.0.1-SNAPSHOT.jar"
-$frontendDist = "D:\wwwroot\locallink\locallink-web\dist"
+$backendJar = Join-Path $PSScriptRoot "target\locallink-system-0.0.1-SNAPSHOT.jar"
+$frontendDist = Join-Path $PSScriptRoot "locallink-web\dist"
 $backendDir = Split-Path $backendJar -Parent
 # Static directory next to JAR file (configured in application.yml)
 $backendStatic = Join-Path $backendDir "static"
