@@ -14,7 +14,7 @@
 一套开箱即用的**局域网即时通讯系统**：后端 Spring Boot 3 + 前端 Vue 3 + Jakarta WebSocket + Electron 桌面端，
 支持私聊、群聊、文件传输、消息撤回、通知中心与后台管理，Web 与 Windows 桌面双端可用。
 
-## ✨ 功能特性
+## 功能特性
 
 - **账号体系**：注册 / 登录（BCrypt 加密）、在线状态、个人资料与头像
 - **好友系统**：好友申请 / 同意 / 拒绝、备注、拉黑、删除
@@ -25,7 +25,7 @@
 - **后台管理**：用户封禁 / 禁言、角色调整、举报与申诉处理
 - **桌面客户端**：Electron 打包 Windows 应用，内嵌后端 JAR，安装即用
 
-## 🧱 技术栈
+## 技术栈
 
 | 层次 | 技术 |
 | --- | --- |
@@ -37,7 +37,7 @@
 
 > 实时消息走 WebSocket 长连接（30s 心跳、自动重连），未启用消息队列。
 
-## 🏗 系统架构
+## 系统架构
 
 ```
 ┌────────────────────┐        HTTP / WebSocket        ┌──────────────────────────┐
@@ -58,7 +58,7 @@
                                                       └──────────────────────────┘
 ```
 
-## 🚀 快速开始
+## 快速开始
 
 ### 前置要求
 
@@ -119,7 +119,7 @@ npm run electron:build-win  # 打包 Windows 客户端
 - [WEBSOCKET_FIX_GUIDE.md](WEBSOCKET_FIX_GUIDE.md) —— Nginx 下 WebSocket 断开问题排查
 - [nginx-config-fixed.conf](nginx-config-fixed.conf) —— 可直接参考的 Nginx 配置
 
-## 📁 项目结构
+## 项目结构
 
 ```
 locallink-system/
@@ -143,12 +143,12 @@ locallink-system/
 └── uploads/               # 运行时文件存储（不纳入版本库）
 ```
 
-## 📚 文档
+## 文档
 
 - [API文档.md](API文档.md) —— REST 接口与 WebSocket 消息格式
 - [用户使用手册.md](用户使用手册.md) —— 功能使用说明
 
-## ❓ 常见问题
+## 常见问题
 
 | 问题 | 解决 |
 | --- | --- |
@@ -157,19 +157,19 @@ locallink-system/
 | H2 数据文件被锁 | 开发模式下已开启 `AUTO_SERVER=TRUE`，确认没有重复启动后端 |
 | 前端请求 404 | 确认后端已启动，且 `VITE_API_BASE_URL` 指向正确地址 |
 
-## 🔐 安全建议
+## 安全建议
 
 - 默认管理员密码 `123456` 仅用于本地演示，部署前请修改
 - 不要把 `application-local.yml`、`.env` 提交到仓库（已在 `.gitignore` 中忽略）
 - 生产环境建议为数据库使用独立账号，并开启 HTTPS
 
-## 🤝 贡献
+## 贡献
 
-欢迎 Issue 与 PR。提交前请确保：
+欢迎 Issue 与 PR，提交前请确保：
 
 1. 代码可正常编译（`mvn -q -DskipTests package`）与构建（`npm run build`）
 2. 不包含本地路径、账号密码等敏感信息
 
-## 📄 许可证
+##  许可证
 
 本项目基于 [MIT License](LICENSE) 开源，可自由使用、修改与分发。
