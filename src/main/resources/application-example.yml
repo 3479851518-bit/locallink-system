@@ -30,7 +30,7 @@ spring:
     url: ${DB_URL:jdbc:mysql://localhost:3306/locallink?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai}
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:PassWord1234}
+    password: ${DB_PASSWORD:}
   
   # 文件上传配置
   servlet:
@@ -38,13 +38,13 @@ spring:
       max-file-size: ${MAX_FILE_SIZE:100MB}
       max-request-size: ${MAX_REQUEST_SIZE:100MB}
   
-  # RabbitMQ配置（如果未使用可以注释掉）
-  rabbitmq:
-    host: ${RABBITMQ_HOST:localhost}
-    port: ${RABBITMQ_PORT:5672}
-    username: ${RABBITMQ_USERNAME:guest}
-    password: ${RABBITMQ_PASSWORD:guest}
-    virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
+  # RabbitMQ 配置（本项目未使用消息队列，保留占位，可删除）
+  # rabbitmq:
+  #   host: ${RABBITMQ_HOST:localhost}
+  #   port: ${RABBITMQ_PORT:5672}
+  #   username: ${RABBITMQ_USERNAME:guest}
+  #   password: ${RABBITMQ_PASSWORD:guest}
+  #   virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
 
 # ========================================
 # 文件上传路径配置

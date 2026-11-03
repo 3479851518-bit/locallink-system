@@ -4,4 +4,4 @@ spring:
     url: ${DB_URL:jdbc:mysql://localhost:3306/locallink?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true}
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:[PassWord1234}
+    password: ${DB_PASSWORD:}
