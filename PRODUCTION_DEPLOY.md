@@ -2,7 +2,7 @@
 
 ##  部署路径
 
-> 说明：文中 `<部署目录>`、`<项目目录>` 为占位符，请替换为实际路径（Windows 如 `D:\wwwroot\locallink`，Linux 如 `/opt/locallink`）。
+> 说明：文中 `<部署目录>`、`<项目目录>` 为占位符，请替换为实际路径（Windows 如 `C:\deploy\locallink`，Linux 如 `/opt/locallink`）。
 
 - **后端JAR**: `<部署目录>\locallink-system\target\locallink-system-0.0.1-SNAPSHOT.jar`
 - **前端dist**: `<部署目录>\locallink-web\dist\`
