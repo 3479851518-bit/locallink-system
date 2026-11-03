@@ -1,0 +1,21 @@
+# 本地开发：内置 H2 数据库，无需安装/配置 MySQL
+spring:
+  datasource:
+    # AUTO_SERVER=TRUE：避免重复启动时 data/locallink.mv.db 文件被锁
+    url: jdbc:h2:file:./data/locallink;MODE=MySQL;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/schema-h2.sql
+      data-locations: classpath:db/data-h2.sql
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+logging:
+  level:
+    org.springframework.web: INFO

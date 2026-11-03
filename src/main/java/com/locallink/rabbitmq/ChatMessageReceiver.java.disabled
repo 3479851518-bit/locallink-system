@@ -1,0 +1,55 @@
+package com.locallink.rabbitmq;
+
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
+import com.locallink.entity.ChatMessage;
+import com.locallink.service.ChatMessageService;
+import com.locallink.service.MessagePollingService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+// RabbitMQ 消息接收器已禁用，项目使用 WebSocket 和 HTTP 轮询
+// @Slf4j
+// @Component
+public class ChatMessageReceiver {
+    
+    @Autowired
+    private ChatMessageService chatMessageService;
+    
+    @Autowired
+    private MessagePollingService messagePollingService;
+    
+    @RabbitListener(queues = RabbitMQConfig.CHAT_QUEUE)
+    public void receiveChatMessage(String message) {
+        try {
+            log.info("收到聊天消息: {}", message);
+            JSONObject json = JSON.parseObject(message);
+            
+            ChatMessage chatMessage = JSON.toJavaObject(json, ChatMessage.class);
+            // 使用HTTP轮询服务保存并推送消息
+            messagePollingService.saveAndPushMessage(chatMessage);
+        } catch (Exception e) {
+            log.error("处理聊天消息异常", e);
+        }
+    }
+    
+    @RabbitListener(queues = RabbitMQConfig.FILE_QUEUE)
+    public void receiveFileMessage(String message) {
+        try {
+            log.info("收到文件消息: {}", message);
+        } catch (Exception e) {
+            log.error("处理文件消息异常", e);
+        }
+    }
+    
+    @RabbitListener(queues = RabbitMQConfig.NOTIFY_QUEUE)
+    public void receiveNotifyMessage(String message) {
+        try {
+            log.info("收到通知消息: {}", message);
+        } catch (Exception e) {
+            log.error("处理通知消息异常", e);
+        }
+    }
+}

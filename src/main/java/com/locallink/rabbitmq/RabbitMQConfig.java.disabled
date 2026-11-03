@@ -1,0 +1,67 @@
+package com.locallink.rabbitmq;
+
+import org.springframework.amqp.core.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+// RabbitMQ 配置已禁用，项目使用 WebSocket 和 HTTP 轮询
+// @Configuration
+public class RabbitMQConfig {
+    
+    public static final String CHAT_QUEUE = "chat.queue";
+    public static final String CHAT_EXCHANGE = "chat.exchange";
+    public static final String CHAT_ROUTING_KEY = "chat.message";
+    
+    public static final String FILE_QUEUE = "file.queue";
+    public static final String FILE_EXCHANGE = "file.exchange";
+    public static final String FILE_ROUTING_KEY = "file.transfer";
+    
+    public static final String NOTIFY_QUEUE = "notify.queue";
+    public static final String NOTIFY_EXCHANGE = "notify.exchange";
+    public static final String NOTIFY_ROUTING_KEY = "notify.message";
+    
+    @Bean
+    public Queue chatQueue() {
+        return QueueBuilder.durable(CHAT_QUEUE).build();
+    }
+    
+    @Bean
+    public DirectExchange chatExchange() {
+        return ExchangeBuilder.directExchange(CHAT_EXCHANGE).durable(true).build();
+    }
+    
+    @Bean
+    public Binding chatBinding() {
+        return BindingBuilder.bind(chatQueue()).to(chatExchange()).with(CHAT_ROUTING_KEY);
+    }
+    
+    @Bean
+    public Queue fileQueue() {
+        return QueueBuilder.durable(FILE_QUEUE).build();
+    }
+    
+    @Bean
+    public DirectExchange fileExchange() {
+        return ExchangeBuilder.directExchange(FILE_EXCHANGE).durable(true).build();
+    }
+    
+    @Bean
+    public Binding fileBinding() {
+        return BindingBuilder.bind(fileQueue()).to(fileExchange()).with(FILE_ROUTING_KEY);
+    }
+    
+    @Bean
+    public Queue notifyQueue() {
+        return QueueBuilder.durable(NOTIFY_QUEUE).build();
+    }
+    
+    @Bean
+    public DirectExchange notifyExchange() {
+        return ExchangeBuilder.directExchange(NOTIFY_EXCHANGE).durable(true).build();
+    }
+    
+    @Bean
+    public Binding notifyBinding() {
+        return BindingBuilder.bind(notifyQueue()).to(notifyExchange()).with(NOTIFY_ROUTING_KEY);
+    }
+}

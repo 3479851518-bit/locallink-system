@@ -1,0 +1,7 @@
+# 使用本机 MySQL（需先导入 locallink.sql，并配置 application-local.yml 中的密码）
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/locallink?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:[PassWord1234}

@@ -1,0 +1,57 @@
+package com.locallink.rabbitmq;
+
+import com.alibaba.fastjson2.JSON;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.stereotype.Component;
+
+// RabbitMQ 消息发送器已禁用，项目使用 WebSocket 和 HTTP 轮询
+// @Slf4j
+// @Component
+// @ConditionalOnBean(RabbitTemplate.class)
+public class MessageSender {
+    
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+    
+    public void sendChatMessage(Object message) {
+        try {
+            rabbitTemplate.convertAndSend(
+                RabbitMQConfig.CHAT_EXCHANGE,
+                RabbitMQConfig.CHAT_ROUTING_KEY,
+                JSON.toJSONString(message)
+            );
+            log.info("发送聊天消息成功");
+        } catch (Exception e) {
+            log.error("发送聊天消息失败", e);
+        }
+    }
+    
+    public void sendFileMessage(Object message) {
+        try {
+            rabbitTemplate.convertAndSend(
+                RabbitMQConfig.FILE_EXCHANGE,
+                RabbitMQConfig.FILE_ROUTING_KEY,
+                JSON.toJSONString(message)
+            );
+            log.info("发送文件消息成功");
+        } catch (Exception e) {
+            log.error("发送文件消息失败", e);
+        }
+    }
+    
+    public void sendNotifyMessage(Object message) {
+        try {
+            rabbitTemplate.convertAndSend(
+                RabbitMQConfig.NOTIFY_EXCHANGE,
+                RabbitMQConfig.NOTIFY_ROUTING_KEY,
+                JSON.toJSONString(message)
+            );
+            log.info("发送通知消息成功");
+        } catch (Exception e) {
+            log.error("发送通知消息失败", e);
+        }
+    }
+}

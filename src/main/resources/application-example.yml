@@ -1,0 +1,84 @@
+# ========================================
+# 应用基础配置
+# ========================================
+server:
+  port: ${SERVER_PORT:8080}
+
+# ========================================
+# MyBatis-Plus 配置
+# ========================================
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.locallink.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    # 生产环境建议关闭SQL日志
+    log-impl: ${MYBATIS_LOG_IMPL:org.apache.ibatis.logging.stdout.StdOutImpl}
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# ========================================
+# Spring 配置
+# ========================================
+spring:
+  # 数据源配置（使用环境变量，避免硬编码敏感信息）
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/locallink?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:PassWord1234}
+  
+  # 文件上传配置
+  servlet:
+    multipart:
+      max-file-size: ${MAX_FILE_SIZE:100MB}
+      max-request-size: ${MAX_REQUEST_SIZE:100MB}
+  
+  # RabbitMQ配置（如果未使用可以注释掉）
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST:/}
+
+# ========================================
+# 文件上传路径配置
+# ========================================
+file:
+  upload:
+    path: ${FILE_UPLOAD_PATH:uploads}
+    avatar:
+      max-size: ${AVATAR_MAX_SIZE:5242880}  # 5MB
+    group-avatar:
+      max-size: ${GROUP_AVATAR_MAX_SIZE:5242880}  # 5MB
+
+# ========================================
+# WebSocket配置
+# ========================================
+websocket:
+  # 心跳间隔（毫秒）
+  heartbeat-interval: ${WS_HEARTBEAT_INTERVAL:30000}
+  # 消息撤回时间限制（秒）
+  recall-time-limit: ${WS_RECALL_TIME_LIMIT:120}
+
+# ========================================
+# 日志配置
+# ========================================
+logging:
+  level:
+    com.locallink: ${LOG_LEVEL:DEBUG}
+    com.locallink.service: ${LOG_LEVEL:DEBUG}
+    org.springframework.web: ${SPRING_WEB_LOG_LEVEL:INFO}
+  charset:
+    console: UTF-8
+    file: UTF-8
+  # 可选：配置日志文件输出
+  # file:
+  #   name: logs/locallink.log
+  #   max-size: 10MB
+  #   max-history: 30
