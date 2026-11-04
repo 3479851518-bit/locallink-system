@@ -8,6 +8,7 @@
   <img alt="MySQL" src="https://img.shields.io/badge/MySQL-8.0-4479A1">
   <img alt="WebSocket" src="https://img.shields.io/badge/WebSocket-Jakarta-blue">
   <img alt="Electron" src="https://img.shields.io/badge/Electron-28-47848F">
+  <img alt="AI Assisted" src="https://img.shields.io/badge/AI%20Assisted-Cursor-000000">
   <img alt="License" src="https://img.shields.io/badge/License-MIT-yellow">
 </p>
 
@@ -162,6 +163,15 @@ locallink-system/
 - 默认管理员密码 `123456` 仅用于本地演示，部署前请修改
 - 不要把 `application-local.yml`、`.env` 提交到仓库（已在 `.gitignore` 中忽略）
 - 生产环境建议为数据库使用独立账号，并开启 HTTPS
+
+## 开发工具与 AI 协助
+
+本项目开发过程中使用 **Cursor** 作为 AI 编程助手：部分前端页面组件、后端样板代码与文档初稿由其生成，
+均经人工审查、修改与联调测试后合入。
+
+- 架构设计、业务逻辑与技术选型由作者本人完成
+- 所有提交均经过人工 review，AI 生成内容不直接上线
+- 提交信息中使用 `Assisted-by: Cursor` 标注由 AI 协助完成的改动，便于追溯
 
 ## 贡献
 
